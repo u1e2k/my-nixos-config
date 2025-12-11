@@ -308,6 +308,9 @@
     discord
     slack
     
+    # セキュリティ
+    _1password-gui    # 1Passwordデスクトップアプリ
+    
     # マルチメディア
     mpv
     

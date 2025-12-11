@@ -39,6 +39,38 @@
     keyMap = "jp106";
   };
 
+  # ============================================================================
+  # 指紋認証（fprintd）
+  # ============================================================================
+  # dynabook V72/B (2016年冬モデル) は Synaptics VFS495/VFS491 等の
+  # 古いセンサーを使用しており、標準libfprintでサポートされています
+
+  services.fprintd = {
+    enable = true;
+    # 2016年モデルでは標準libfprintを使用（TODドライバー不要）
+    # tod.enable = true;
+    # tod.driver = pkgs.libfprint-2-tod1-vfs0090;
+  };
+
+  # PAMで指紋認証を有効化
+  security.pam.services = {
+    login.fprintAuth = true;
+    sudo.fprintAuth = true;
+    # Hyprlandロック画面用
+    swaylock.fprintAuth = true;
+  };
+
+  # ============================================================================
+  # 1Password
+  # ============================================================================
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    # Polkit統合
+    polkitPolicyOwners = [ "user" ];
+  };
+
   # 日本語入力環境（fcitx5 + Mozc）
   i18n.inputMethod = {
     enabled = "fcitx5";
