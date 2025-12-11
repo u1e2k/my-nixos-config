@@ -1,0 +1,38 @@
+# NixOS / Nix関連
+result
+result-*
+
+# ハードウェア設定（マシン固有なのでGitで追跡しない場合はコメントアウトを外す）
+# hosts/*/hardware-configuration.nix
+
+# sops-nix: 秘密鍵（絶対にコミットしないこと！）
+.sops.yaml
+*.key
+keys.txt
+
+# Home Manager
+.direnv/
+.envrc
+
+# エディタ / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ビルド成果物
+dist/
+build/
+*.o
+*.so
+*.a
+
+# ログファイル
+*.log
+
+# 一時ファイル
+tmp/
+temp/
+.tmp/
