@@ -4,6 +4,9 @@
   imports = [
     # ハードウェア設定（nixos-generate-configで生成される）
     ./hardware-configuration.nix
+    
+    # JaKooLitの追加機能
+    ../../modules/jakoolit-extras.nix
   ];
 
   # ============================================================================
@@ -294,10 +297,10 @@
   # Docker（必要な場合）
   # ============================================================================
 
-  # virtualisation.docker = {
-  #   enable = true;
-  #   enableOnBoot = true;
-  # };
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
 
   # ============================================================================
   # セキュリティ / sops-nix

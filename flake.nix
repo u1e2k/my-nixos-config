@@ -22,9 +22,12 @@
     
     # nixos-hardware - よくあるハードウェアの最適化設定
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
+    # JaKooLit/NixOS-Hyprland - 完全なHyprland設定パッケージ
+    jakoolit-hyprland.url = "github:JaKooLit/NixOS-Hyprland";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix, nixos-hardware, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, sops-nix, nixos-hardware, jakoolit-hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
       
@@ -41,8 +44,8 @@
     {
       # 各ホストの設定
       nixosConfigurations = {
-        # メインのThinkPad設定
-        thinkpad = nixpkgs.lib.nixosSystem {
+        # メインのラップトップ設定
+        laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           
           specialArgs = { inherit inputs; };
@@ -52,7 +55,7 @@
             { nixpkgs.overlays = overlays; }
             
             # ホスト固有の設定
-            ./hosts/thinkpad
+            ./hosts/laptop
             
             # Home Manager統合
             home-manager.nixosModules.home-manager

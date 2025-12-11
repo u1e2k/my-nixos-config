@@ -41,9 +41,9 @@
       "..." = "cd ../..";
       
       # NixOS便利エイリアス
-      rebuild = "sudo nixos-rebuild switch --flake /workspaces/my-nixos-config#thinkpad";
-      update = "cd /workspaces/my-nixos-config && nix flake update && sudo nixos-rebuild switch --flake .#thinkpad";
-      clean = "sudo nix-collect-garbage -d && nix-collect-garbage -d";
+      rebuild = "just rebuild";
+      update = "just update";
+      clean = "just clean";
       search = "nix search nixpkgs";
       
       # Git
@@ -177,6 +177,39 @@
   };
 
   # ============================================================================
+  # ターミナルマルチプレクサ（Zellij）
+  # ============================================================================
+
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+    
+    settings = {
+      theme = "tokyo-night";
+      default_shell = "zsh";
+      pane_frames = true;
+      
+      ui = {
+        pane_frames = {
+          rounded_corners = true;
+        };
+      };
+      
+      # シンプルなレイアウト
+      simplified_ui = false;
+      
+      # マウスサポート
+      mouse_mode = true;
+      
+      # スクロールバックバッファ
+      scroll_buffer_size = 10000;
+      
+      # コピー時の動作
+      copy_on_select = false;
+    };
+  };
+
+  # ============================================================================
   # ファイルマネージャー（CLI）
   # ============================================================================
 
@@ -229,6 +262,7 @@
     yq            # YAMLプロセッサ
     tldr          # manの簡易版
     tree
+    zellij        # ターミナルマルチプレクサ
     
     # システムモニタリング
     htop
@@ -248,13 +282,20 @@
     # バージョン管理
     gh            # GitHub CLI
     
+    # ビルド・開発支援ツール
+    just          # コマンドランナー（Make代替）
+    nh            # NixOS Helper
+    
     # エディタ・IDE
     vscodium      # VSCodeのオープンソース版
+    zed-editor    # モダンな高速エディタ
+    # cursor      # AI搭載エディタ（nixpkgsに未収録の場合はコメントアウト）
     # unstable版を使う場合
     # pkgs.unstable.vscodium
     
     # ブラウザ
-    firefox
+    brave
+    # firefox
     # chromium
     
     # Hyprland / Wayland関連
@@ -264,12 +305,11 @@
     networkmanagerapplet  # Wi-Fi設定
     
     # コミュニケーション
-    # discord
-    # slack
+    discord
+    slack
     
     # マルチメディア
-    # vlc
-    # mpv
+    mpv
     
     # オフィス
     # libreoffice-fresh
@@ -280,6 +320,11 @@
     # go
     # rustc
     # cargo
+    
+    # Docker関連
+    # docker-compose  # V1（非推奨）
+    # Docker Compose V2は `docker compose` コマンドでDockerに統合済み
+    lazydocker    # Docker TUI管理ツール
   ];
 
   # ============================================================================

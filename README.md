@@ -25,6 +25,24 @@ my-nixos-config/
 
 ### 1️⃣ 初回セットアップ（新しいNixOSマシンで）
 
+#### 🚀 簡単インストール（推奨）
+
+```bash
+# このリポジトリをクローン
+git clone git@github.com:YOUR_USERNAME/nixos-config.git ~/nixos-config
+cd ~/nixos-config
+
+# インタラクティブインストールスクリプトを実行
+./install.sh
+```
+
+スクリプトが自動的に：
+- ホスト名・ユーザー名を設定
+- ハードウェア設定を生成
+- システムをビルド
+
+#### 📋 手動セットアップ
+
 ```bash
 # このリポジトリをクローン
 git clone git@github.com:YOUR_USERNAME/nixos-config.git ~/nixos-config
@@ -43,31 +61,35 @@ sudo nixos-rebuild switch --flake .#thinkpad
 
 ### 2️⃣ 日常的な使い方
 
+#### Just コマンド（推奨）
+
 ```bash
-# 設定を編集したら
-cd ~/nixos-config
-git add .
-git commit -m "Update: ○○を変更"
-git push
+# システムを再構築
+just rebuild
 
-# システムに反映
-sudo nixos-rebuild switch --flake .#thinkpad
+# パッケージ更新 + 再構築
+just update
 
-# または便利なエイリアスで（Home Manager設定済み）
-rebuild
+# 古い世代を削除
+just clean
+
+# システム情報表示
+just info
+
+# 全コマンド表示
+just --list
 ```
+
+#### または便利なエイリアスで
+```bash
+rebuild    # システム再構築
+update     # パッケージ更新
+clean      # クリーンアップ
+```
+
+> 💡 **詳細は [EASY_SETUP.md](EASY_SETUP.md) をご覧ください**
 
 ### 3️⃣ アップデート
-
-```bash
-# 依存関係を最新化 → システム再構築
-cd ~/nixos-config
-nix flake update
-sudo nixos-rebuild switch --flake .#thinkpad
-
-# または一発コマンド（エイリアス）
-update
-```
 
 ## ⚙️ カスタマイズガイド
 
@@ -274,6 +296,21 @@ sudo /nix/var/nix/profiles/system/bin/switch-to-configuration switch
 - [Misterio77/nix-starter-configs](https://github.com/Misterio77/nix-starter-configs)
 - [hlissner/dotfiles](https://github.com/hlissner/dotfiles)
 - [NotAShelf/nix-config](https://github.com/NotAShelf/nix-config)
+- **[JaKooLit/NixOS-Hyprland](https://github.com/JaKooLit/NixOS-Hyprland)** - ✨ このリポジトリで統合済み！
+
+## 🚀 追加機能
+
+### JaKooLit/NixOS-Hyprland統合
+
+このリポジトリには[JaKooLit/NixOS-Hyprland](https://github.com/JaKooLit/NixOS-Hyprland)の機能が統合されています。
+
+詳細は [JAKOOLIT_INTEGRATION.md](JAKOOLIT_INTEGRATION.md) をご覧ください。
+
+主な追加機能：
+- 🎨 高度なHyprlandツール（hypridle, pyprland, waypaper等）
+- ⚡ システム最適化（zramスワップ、パワーマネジメント）
+- 📦 Flatpakサポート
+- 🎯 Hyprland Cachix（高速ビルド）
 
 ---
 

@@ -64,6 +64,18 @@
     };
   };
 
+  # デフォルトブラウザをBraveに設定
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "brave-browser.desktop";
+      "x-scheme-handler/http" = "brave-browser.desktop";
+      "x-scheme-handler/https" = "brave-browser.desktop";
+      "x-scheme-handler/about" = "brave-browser.desktop";
+      "x-scheme-handler/unknown" = "brave-browser.desktop";
+    };
+  };
+
   # Dunst（通知デーモン）設定
   services.dunst = {
     enable = true;
@@ -118,7 +130,7 @@
         sticky_history = true;
         history_length = 20;
         
-        browser = "firefox";
+        browser = "brave";
         always_run_script = true;
         title = "Dunst";
         class = "Dunst";

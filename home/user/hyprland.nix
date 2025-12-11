@@ -144,7 +144,7 @@
         # アプリケーション起動
         "$mod, Return, exec, kitty"              # ターミナル
         "$mod, E, exec, nautilus"                # ファイルマネージャー
-        "$mod, B, exec, firefox"                 # ブラウザ
+        "$mod, B, exec, brave"                   # ブラウザ
         "$mod, D, exec, rofi -show drun"         # アプリランチャー
         
         # ウィンドウ操作
